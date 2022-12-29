@@ -50,18 +50,20 @@ toggleSideBtn('door');
 toggleSideBtn('device');
 
 const updateDoorStatus = (doorStatus) => {
+  let frame;
   if (doorStatus) {
-    // frame on
+    frame = '#r g d;';
   } else {
-    // frame off
+    frame = '#s g d;';
   }
   toggleSideBtn('door');
 };
 const updateDeviceStatus = (deviceStatus) => {
+  let frame;
   if (deviceStatus) {
-    // frame on
+    frame = '#r c d;';
   } else {
-    // frame off
+    frame = '#s c d;';
   }
   toggleSideBtn('device');
 };
@@ -93,33 +95,47 @@ MicOnBtn.addEventListener('click', () => {
     VoiceValueElem.innerHTML = value + '..';
     MicOnBtn.classList.remove('mic-btn-active');
     MicOnBtn.classList.add('mic-btn');
+    let done = true;
     if (value === 'turn on device') {
       currentDeviceStatus = true;
       updateDeviceStatus(currentDeviceStatus);
+      speak('Device is on');
     } else if (value === 'turn off device') {
       currentDeviceStatus = false;
       updateDeviceStatus(currentDeviceStatus);
+      speak('Device is off');
     } else if (value === 'open door') {
       currentDoorStatus = true;
       updateDoorStatus(currentDoorStatus);
+      speak('door is opened');
     } else if (value === 'close door') {
       currentDoorStatus = false;
       updateDoorStatus(currentDoorStatus);
+      speak('door is closed');
     } else if (value === 'turn on lights') {
       lightStatus = true;
       updateLightStatus();
+      speak('lights are on');
     } else if (value === 'turn off lights') {
       lightStatus = false;
       updateLightStatus();
+      speak('lights are off');
     } else if (value === 'turn on fan') {
       fanStatus = true;
-      updateFandStatus();
+      updateFanStatus();
+      speak('fan is on');
     } else if (value === 'turn off fan') {
       fanStatus = false;
-      updateFandStatus();
+      updateFanStatus();
+      speak('fan is off');
+    } else {
+      speak(`i don't understand`);
+      done = false;
     }
     // sende frame
-    speak('Okay');
+    if (done) {
+      // speak('Okay');
+    }
     setTimeout(() => {
       VoiceValueElem.innerHTML = 'Say Something..';
     }, 1000);
