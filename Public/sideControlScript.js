@@ -52,19 +52,21 @@ toggleSideBtn('device');
 const updateDoorStatus = (doorStatus) => {
   let frame;
   if (doorStatus) {
-    frame = '#r g d;';
+    frame = '#rgd;';
   } else {
-    frame = '#s g d;';
+    frame = '#sgd;';
   }
+  sendDataToPort(frame);
   toggleSideBtn('door');
 };
 const updateDeviceStatus = (deviceStatus) => {
   let frame;
   if (deviceStatus) {
-    frame = '#r c d;';
+    frame = '#rcd;';
   } else {
-    frame = '#s c d;';
+    frame = '#scd;';
   }
+  sendDataToPort(frame);
   toggleSideBtn('device');
 };
 DoorOnBtn.addEventListener('click', () => {

@@ -68,9 +68,9 @@ updateLigthControl();
 const updateLightStatus = () => {
   let frame;
   if (lightStatus) {
-    frame = '#r l d;';
+    frame = '#rld;';
   } else {
-    frame = '#s l d;';
+    frame = '#sld;';
   }
   sendDataToPort(frame);
   toggleBtnLight('light');
@@ -85,9 +85,9 @@ autoLightBtn.addEventListener('click', () => {
   toggleBtnLight('auto-light');
   let frame;
   if (autoLightStatus) {
-    frame = '#r l e;';
+    frame = '#rle;';
   } else {
-    frame = '#r l d;';
+    frame = '#rld;';
   }
   sendDataToPort(frame);
 });

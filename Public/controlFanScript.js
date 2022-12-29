@@ -82,10 +82,10 @@ const updateFanStatus = () => {
   let frame;
   if (fanStatus) {
     //frame on
-    frame = '#r f d;';
+    frame = '#rfd;';
   } else {
     // frame off
-    frame = '#s f d;';
+    frame = '#sfd;';
   }
   sendDataToPort(frame);
   toggleBtn('fan');
@@ -100,10 +100,11 @@ autoFanBtn.addEventListener('click', () => {
   toggleBtn('auto-fan');
   let frame;
   if (autoFanStatus) {
-    frame = '#r f e;';
+    frame = '#rfe;';
   } else {
-    frame = '#r f d;';
+    frame = '#rfd;';
   }
+  sendDataToPort(frame);
 });
 incSpeedBtn.addEventListener('click', () => {
   let speed = 0;

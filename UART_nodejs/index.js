@@ -40,11 +40,12 @@ setInterval(() => {
 }, 10000);
 // status handler
 const statusHandler = (data) => {
-  let dataArray = data.split(';');
+  let dataArray = data.split(',');
   // dataArray = ['00', '0f', '00', '00', 'F1F0', '01', '01', '01', '01'];
   // homeStatus , temp , fanStatus ,  autoFanStatus , light intensity , light status, autoLightMode , doorStatus , deviceStatus
   statusObj.homeStatus = hexToDecimal(dataArray[0]);
   statusObj.indoorTemp = hexToDecimal(dataArray[1]) + '°';
+
   if (hexToDecimal(dataArray[2]) === 0) {
     statusObj.fanStatus = false;
   } else {
@@ -81,6 +82,7 @@ const statusHandler = (data) => {
 };
 // save data
 const saveData = async (data) => {
+  console.log(data);
   if (data === 'S') {
     dataType = data;
   } else {
