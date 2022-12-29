@@ -89,6 +89,8 @@ MicOnBtn.addEventListener('click', () => {
   recognition.onspeechend = () => {
     console.log('stopped listening');
     recognition.stop();
+    MicOnBtn.classList.remove('mic-btn-active');
+    MicOnBtn.classList.add('mic-btn');
   };
   recognition.onresult = (result) => {
     let value = result.results[0][0].transcript;
@@ -128,6 +130,12 @@ MicOnBtn.addEventListener('click', () => {
       fanStatus = false;
       updateFanStatus();
       speak('fan is off');
+    } else if (value.includes('hi') || value.includes('hello')) {
+      speak(`hello sir`);
+    } else if (value.includes('bye')) {
+      speak(`bye bye sir have a nice day`);
+    } else if (value.includes('night')) {
+      speak(`good night sir`);
     } else {
       speak(`i don't understand`);
       done = false;
